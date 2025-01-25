@@ -1,0 +1,82 @@
+[
+    {
+        "username": "admin",
+        "password": "admin123",
+        "role": "Administrador",
+        "permissions": ["admin_permission1", "admin_permission2", "admin_permission3", "admin_permission4"],
+        "full_name": "Juan Pérez",
+        "email": "juan.perez@admin.com",
+        "address": "Calle Ficticia 123, Ciudad XYZ",
+        "phone": "+1234567890"
+    },
+    {
+        "username": "cliente",
+        "password": "cliente123",
+        "role": "Cliente",
+        "permissions": ["cliente_permission1", "cliente_permission2"],
+        "full_name": "Ana García",
+        "email": "ana.garcia@cliente.com",
+        "address": "Av. Principal 456, Ciudad ABC",
+        "phone": "+0987654321"
+    },
+    {
+        "username": "invitado",
+        "password": "invitado123",
+        "role": "Invitado",
+        "permissions": ["invitado_permission1", "invitado_permission2"],
+        "full_name": "Carlos Rodríguez",
+        "email": "carlos.rodriguez@invitado.com",
+        "address": "Calle Secundaria 789, Ciudad DEF",
+        "phone": "+1122334455"
+    },
+    {
+        "username": "superadmin",
+        "password": "superadmin123",
+        "role": "Administrador",
+        "permissions": ["superadmin_permission1", "superadmin_permission2", "superadmin_permission3"],
+        "full_name": "Pedro Martínez",
+        "email": "pedro.martinez@superadmin.com",
+        "address": "Calle Central 101, Ciudad GHI",
+        "phone": "+6677889900"
+    },
+    {
+        "username": "empleado1",
+        "password": "empleado123",
+        "role": "Empleado",
+        "permissions": ["empleado_permission1", "empleado_permission2"],
+        "full_name": "Lucía Fernández",
+        "email": "lucia.fernandez@empleado.com",
+        "address": "Av. Libertad 202, Ciudad JKL",
+        "phone": "+2233445566"
+    },
+    {
+        "username": "cliente2",
+        "password": "cliente456",
+        "role": "Cliente",
+        "permissions": ["cliente_permission3", "cliente_permission4"],
+        "full_name": "Marco Sánchez",
+        "email": "marco.sanchez@cliente.com",
+        "address": "Calle Sol 303, Ciudad MNO",
+        "phone": "+3344556677"
+    },
+    {
+        "username": "invitado2",
+        "password": "invitado456",
+        "role": "Invitado",
+        "permissions": ["invitado_permission3"],
+        "full_name": "María López",
+        "email": "maria.lopez@invitado.com",
+        "address": "Calle Viento 404, Ciudad PQR",
+        "phone": "+4455667788"
+    },
+    {
+        "username": "moderador",
+        "password": "moderador123",
+        "role": "Moderador",
+        "permissions": ["moderador_permission1", "moderador_permission2", "moderador_permission3"],
+        "full_name": "Fernando Díaz",
+        "email": "fernando.diaz@moderador.com",
+        "address": "Av. Mar 505, Ciudad STU",
+        "phone": "+5566778899"
+    }
+]

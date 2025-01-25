@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn-custom {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center">Panel de Administrador</h2>
+
+        <!-- Tabla para mostrar usuarios o datos -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="user-table">
+                <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
+        </table>
+
+        <!-- Botón para Crear -->
+        <div class="text-center">
+            <button class="btn btn-success btn-custom" id="create-btn">Crear Usuario</button>
+        </div>
+    </div>
+
+    <!-- Modal para Crear/Editar Usuario -->
+    <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Crear Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="user-form">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Rol</label>
+                            <select class="form-select" id="role">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Invitado">Invitado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="full_name" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="full_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="address" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="phone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Startups. Todos los derechos reservados.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Datos de usuarios (actualizados con la información completa)
+        const users = [
+            {
+                username: "admin",
+                password: "admin123",
+                role: "Administrador",
+                full_name: "Juan Pérez",
+                email: "juan.perez@admin.com",
+                address: "Calle Ficticia 123, Ciudad XYZ",
+                phone: "+1234567890"
+            },
+            {
+                username: "cliente",
+                password: "cliente123",
+                role: "Cliente",
+                full_name: "Ana García",
+                email: "ana.garcia@cliente.com",
+                address: "Av. Principal 456, Ciudad ABC",
+                phone: "+0987654321"
+            },
+            {
+                username: "invitado",
+                password: "invitado123",
+                role: "Invitado",
+                full_name: "Carlos Rodríguez",
+                email: "carlos.rodriguez@invitado.com",
+                address: "Calle Secundaria 789, Ciudad DEF",
+                phone: "+1122334455"
+            },
+            {
+                username: "superadmin",
+                password: "superadmin123",
+                role: "Administrador",
+                full_name: "Pedro Martínez",
+                email: "pedro.martinez@superadmin.com",
+                address: "Calle Central 101, Ciudad GHI",
+                phone: "+6677889900"
+            },
+            {
+                username: "empleado1",
+                password: "empleado123",
+                role: "Empleado",
+                full_name: "Lucía Fernández",
+                email: "lucia.fernandez@empleado.com",
+                address: "Av. Libertad 202, Ciudad JKL",
+                phone: "+2233445566"
+            },
+            {
+                username: "cliente2",
+                password: "cliente456",
+                role: "Cliente",
+                full_name: "Marco Sánchez",
+                email: "marco.sanchez@cliente.com",
+                address: "Calle Sol 303, Ciudad MNO",
+                phone: "+3344556677"
+            },
+            {
+                username: "invitado2",
+                password: "invitado456",
+                role: "Invitado",
+                full_name: "María López",
+                email: "maria.lopez@invitado.com",
+                address: "Calle Viento 404, Ciudad PQR",
+                phone: "+4455667788"
+            },
+            {
+                username: "moderador",
+                password: "moderador123",
+                role: "Moderador",
+                full_name: "Fernando Díaz",
+                email: "fernando.diaz@moderador.com",
+                address: "Av. Mar 505, Ciudad STU",
+                phone: "+5566778899"
+            }
+        ];
+
+        let editingIndex = null;  // Variable para saber si estamos editando un usuario
+
+        // Función para mostrar los usuarios en la tabla
+        function displayUsers() {
+            const userTable = document.getElementById('user-table');
+            userTable.innerHTML = '';
+
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.full_name}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="btn btn-warning btn-custom" onclick="editUser(${index})">Editar</button>
+                        <button class="btn btn-danger btn-custom" onclick="deleteUser(${index})">Eliminar</button>
+                    </td>
+                `;
+                userTable.appendChild(row);
+            });
+        }
+
+        // Función para abrir el modal de Crear/Editar
+        document.getElementById('create-btn').addEventListener('click', function() {
+            document.getElementById('user-form').reset();
+            document.getElementById('modal-title').textContent = 'Crear Usuario';
+            editingIndex = null;  // Resetear índice de edición
+            const modal = new bootstrap.Modal(document.getElementById('user-modal'));
+            modal.show();
+        });
+
+        // Función para editar un usuario
+        function editUser(index) {
+            const user = users[index];
+            document.getElementById('username').value = user.username;
+            document.getElementById('password').value = user.password;
+            document.getElementById('role').value = user.role;
+            document.getElementById('full_name').value = user.full_name;
+            document.getElementById('email').value = user.email;
+            document.getElementById('address').value = user.address;
+            document.getElementById('phone').value = user.phone;
+
+            document.getElementById('modal-title').textContent = 'Editar Usuario';
+            editingIndex = index;
+
+            const modal = new bootstrap.Modal(document.getElementById('user-modal'));
+            modal.show();
+        }
+
+        // Función para eliminar un usuario
+        function deleteUser(index) {
+            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+                users.splice(index, 1);
+                displayUsers();
+            }
+        }
+
+        // Función para manejar el formulario de Crear/Editar
+        document.getElementById('user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            const full_name = document.getElementById('full_name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            if (editingIndex === null) {
+                // Crear nuevo usuario
+                users.push({ username, password, role, full_name, email, address, phone });
+            } else {
+                // Editar usuario existente
+                users[editingIndex] = { username, password, role, full_name, email, address, phone };
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('user-modal'));
+            modal.hide();  // Cerrar modal
+            displayUsers();  // Actualizar tabla
+        });
+
+        // Inicializar la tabla de usuarios
+        displayUsers();
+    </script>
+</body>
+</html>
